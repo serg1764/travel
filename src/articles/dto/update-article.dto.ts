@@ -1,4 +1,5 @@
-export class CreateArticleDto {
+export class UpdateArticleDto {
+    readonly id: string;
     readonly title?: string;
     readonly url?: string;
     readonly description?: string;
