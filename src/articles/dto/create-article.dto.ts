@@ -1,3 +1,4 @@
+import { IsNotEmpty, IsString } from 'class-validator';
 export class CreateArticleDto {
     readonly title?: string;
     readonly url?: string;
@@ -6,4 +7,7 @@ export class CreateArticleDto {
     readonly text1?: string;
     readonly text2?: string;
     readonly text3?: string;
+    @IsNotEmpty()
+    @IsString()
+    readonly text4: string;
 }

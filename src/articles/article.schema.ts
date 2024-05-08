@@ -1,6 +1,7 @@
 import { Schema } from 'mongoose';
 
-export const ArticleSchema = new Schema({
+export const ArticleSchema = new Schema(
+  {
     title: { type: String, required: false },
     url: { type: String, required: false },
     description: { type: String, required: false },
@@ -8,4 +9,6 @@ export const ArticleSchema = new Schema({
     text1: { type: String, required: false },
     text2: { type: String, required: false },
     text3: { type: String, required: false },
-},{ timestamps: true }); // Добавляем опцию timestamps: true
+  },
+  { timestamps: true },
+); // Добавляем опцию timestamps: true
