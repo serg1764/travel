@@ -65,8 +65,11 @@ export class ArticlesController {
       article = await this.articlesService.findByUrl(idOrUrl);
     }
 
+    console.log('сюда доши1!!!');
+
     // Если статья не найдена ни по ID, ни по URL, выбрасываем исключение
     if (!article) {
+      console.log('сюда доши2!!!');
       throw new NotFoundException('Article not found');
     }
 
