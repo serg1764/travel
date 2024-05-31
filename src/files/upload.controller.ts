@@ -12,9 +12,12 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { ArticlesService } from '../articles/articles.service';
+import { Article } from '../articles/articles.interfaces';
 
 @Controller('api/upload')
 export class UploadController {
+  constructor(private readonly articlesService: ArticlesService) {}
   @Post()
   @UseInterceptors(
     FileInterceptor('image', {
@@ -30,11 +33,19 @@ export class UploadController {
       }),
     }),
   )
-  uploadFile(@UploadedFile() file, @Body('id') id: string) {
+  async uploadFile(@UploadedFile() file, @Body('id') id: string) {
     if (!file) {
       throw new HttpException('File is required', HttpStatus.BAD_REQUEST);
     }
     console.log('попали в UploadFile ');
+
+    let article: Article;
+    console.log(id);
+    if (id) {
+      // Используем сервис для обновления статьи
+      article = await this.articlesService.update(id, { picture: file.path });
+    }
+
     return {
       filename: file.filename,
       path: file.path,

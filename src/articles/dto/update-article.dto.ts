@@ -1,6 +1,6 @@
 import { IsOptional, IsString, IsUrl } from 'class-validator';
 export class UpdateArticleDto {
-  readonly id: string;
+  //readonly id: string;
 
   @IsOptional()
   @IsString()
